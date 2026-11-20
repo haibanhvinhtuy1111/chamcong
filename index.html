@@ -8,7 +8,7 @@
 <title>Bảng Tính Lương</title>
 <script>
 try{
-  var d=localStorage.getItem('dobest_dark');
+  var d=localStorage.getItem('linko_dark');
   if(d===null?matchMedia('(prefers-color-scheme: dark)').matches:d==='1')document.documentElement.classList.add('dark');
 }catch(e){}
 </script>
@@ -31,7 +31,7 @@ tailwind.config={
 <style type="text/tailwindcss">
 @layer components{
   .card{@apply bg-white dark:bg-slate-900 p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm}
-  /* Cỡ chữ 16px trên điện thoại để Safari iPhone không tự phóng to khi chạm ô nhập */
+  /* Cỡ chữ 16px trên điện thoại giúp Safari iPhone không tự phóng to khi chạm ô nhập */
   .fld{@apply w-full px-3 py-2 text-[16px] sm:text-sm font-semibold rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-brand-500 outline-none}
   .hin{@apply w-24 sm:w-20 px-2.5 py-1.5 text-right text-[16px] sm:text-sm font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 outline-none focus:ring-2 focus:ring-brand-500}
   .mi{@apply w-full h-11 px-3 text-right text-[16px] sm:text-sm font-bold rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 outline-none focus:ring-2 focus:ring-brand-500}
@@ -67,7 +67,7 @@ tailwind.config={
   <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 space-y-2 sm:space-y-0 sm:flex sm:items-center sm:justify-between gap-3">
     <div class="flex items-center justify-between gap-2">
       <div class="flex items-center gap-2.5 min-w-0">
-        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-extrabold text-sm sm:text-base shadow-md shrink-0">HAI</div>
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center text-white font-extrabold text-lg shadow-md shrink-0">₫</div>
         <div class="min-w-0">
           <h1 class="text-sm sm:text-lg font-extrabold tracking-tight leading-tight truncate">Bảng Tính Lương</h1>
           <button onclick="openBackupModal()" id="syncBadge" class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 hover:text-brand-600 text-left truncate block max-w-[195px] sm:max-w-none">⏳ Đang kết nối...</button>
@@ -120,10 +120,10 @@ tailwind.config={
         <h2 class="ttl mb-3">👤 Hồ Sơ Nhân Viên</h2>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
           <div class="col-span-2 sm:col-span-1"><label class="lab">Họ tên</label><input type="text" id="empName" oninput="saveAndCalc()" class="fld" placeholder="Nhập họ tên"></div>
-          <div><label class="lab">Mã NV 工号</label><input type="text" id="empId" readonly class="fld opacity-70"></div>
+          <div><label class="lab">Mã NV</label><input type="text" id="empId" readonly class="fld opacity-70"></div>
           <div>
             <label class="lab">Lương cơ bản (VNĐ)</label>
-            <input type="text" inputmode="numeric" id="baseSalary" placeholder="6.000.000" oninput="saveAndCalc()" onfocus="unformatMoneyEl(this)" onblur="formatMoneyEl(this)" class="fld !font-extrabold text-brand-600 dark:text-brand-500">
+            <input type="text" inputmode="numeric" id="baseSalary" placeholder="0" oninput="saveAndCalc()" onfocus="unformatMoneyEl(this)" onblur="formatMoneyEl(this)" class="fld !font-extrabold text-brand-600 dark:text-brand-500">
           </div>
           <div>
             <div class="flex items-center justify-between mb-1">
@@ -133,7 +133,7 @@ tailwind.config={
                 <button type="button" onclick="setStdHours(208)" class="text-[10px] font-bold px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 hover:bg-brand-100 dark:hover:bg-brand-900">208</button>
               </div>
             </div>
-            <input type="text" inputmode="decimal" id="standardHours" placeholder="208" oninput="saveAndCalc()" class="fld !font-bold">
+            <input type="text" inputmode="decimal" id="standardHours" placeholder="200" oninput="saveAndCalc()" class="fld !font-bold">
           </div>
         </div>
       </div>
@@ -362,19 +362,17 @@ tailwind.config={
 
 <script>
 // ----------------------------------------------------
-// 1. FIREBASE CONFIGURATION (GẮN CỨNG TRỰC TIẾP)
+// 1. FIREBASE CONFIGURATION (CHAMCONGLINKO)
 // ----------------------------------------------------
 const firebaseConfig = {
-  apiKey: "AIzaSyCG3yTbJ9Yn2wE0dCFAl9RS0NfuarNkziU",
-  authDomain: "dobest-salary.firebaseapp.com",
-  databaseURL: "https://dobest-salary-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "dobest-salary",
-  storageBucket: "dobest-salary.firebasestorage.app",
-  messagingSenderId: "948662571594",
-  appId: "1:948662571594:web:2e6f74cf3368f0dd718cb3"
+  apiKey: "AIzaSyBaAyjOCCs3IIa1gxVksjXBToGE2wF59p4",
+  authDomain: "chamconglinko.firebaseapp.com",
+  databaseURL: "https://chamconglinko-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "chamconglinko",
+  storageBucket: "chamconglinko.firebasestorage.app",
+  messagingSenderId: "759839690636",
+  appId: "1:759839690636:web:0ae958eeb9eabe7369d0a9"
 };
-// Để '' nếu muốn dùng chung dữ liệu sẵn có của web cũ; đổi thành 'v2/' nếu muốn tách nhánh dữ liệu riêng hoàn toàn.
-const DB_ROOT = 'web_moi/';
 
 let database = null, fbErrorMsg = '';
 try {
@@ -387,12 +385,13 @@ try {
 } catch (e) {
   fbErrorMsg = 'Lỗi khởi tạo Firebase: ' + (e.message || e);
 }
-const dbRef = path => database.ref(DB_ROOT + path);
+const dbRef = path => database.ref(path);
 
 // ----------------------------------------------------
 // 2. TIỆN ÍCH & LỚP LƯU CỤC BỘ DỰ PHÒNG
 // ----------------------------------------------------
-const NS = 'dobest_cache_' + (DB_ROOT || 'main_');
+const NS = 'linko_cache_';
+const DEFAULT_EMP = { NV001: 'Nhân viên 1' };
 const $ = id => document.getElementById(id);
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 const fmtNum = n => Math.round(Number(n) || 0).toLocaleString('en-US');
@@ -422,7 +421,7 @@ function withTimeout(promise, ms = 6000) {
 function formatFbError(err) {
   const msg = String(err && err.message ? err.message : err || '');
   if (msg.includes('PERMISSION_DENIED') || msg.includes('permission_denied')) {
-    return 'Bị chặn quyền (PERMISSION_DENIED): Hãy kiểm tra lại Rules trong Firebase Realtime Database.';
+    return 'Bị chặn quyền (PERMISSION_DENIED): Hãy kiểm tra tab Rules trong Firebase Realtime Database và đặt .read/.write thành true.';
   }
   if (msg.includes('timeout')) return 'Kết nối Firebase bị quá thời gian (kiểm tra mạng).';
   return msg || 'Lỗi kết nối mây.';
@@ -446,7 +445,7 @@ function showSync(status, detail = '') {
 }
 
 // ----------------------------------------------------
-// 3. CẤU TRÚC DỮ LIỆU (TƯƠNG THÍCH 100% VỚI DOBEST-SALARY)
+// 3. DANH MỤC LƯƠNG
 // ----------------------------------------------------
 const OFFICIAL_ITEMS = [
   { key: 'regDay', label: 'Giờ hành chính ngày 8h-17h và 20h-22h', mult: 1.0 },
@@ -490,7 +489,7 @@ const CAL_FIELDS = [
 ];
 const CAL_KEYS = CAL_FIELDS.map(f => f[0]);
 
-let currentEmpId = localStorage.getItem('DOBEST_CURRENT_EMP') || 'DB0351';
+let currentEmpId = localStorage.getItem('LINKO_CURRENT_EMP') || 'NV001';
 let employeesList = {};
 let state = { currentMonth: ymNow(), monthsData: {} };
 let pie = null, selDay = null, saveT = null, pendingEmpSave = null, nameT = null;
@@ -511,8 +510,8 @@ function normalizeRec(raw, prev) {
     companyName: r.companyName || (prev ? prev.companyName : 'CÔNG TY') || 'CÔNG TY',
     empName: r.empName ?? employeesList[currentEmpId] ?? '',
     empId: currentEmpId,
-    baseSalary: r.baseSalary !== undefined ? parseMoney(r.baseSalary) : (prev ? parseMoney(prev.baseSalary) : 6000000),
-    standardHours: parseDec(r.standardHours) || (prev ? parseDec(prev.standardHours) : 208) || 208,
+    baseSalary: r.baseSalary !== undefined ? parseMoney(r.baseSalary) : (prev ? parseMoney(prev.baseSalary) : 0),
+    standardHours: parseDec(r.standardHours) || (prev ? parseDec(prev.standardHours) : 200) || 200,
     bhxhRate: r.bhxhRate !== undefined ? parseDec(r.bhxhRate) : (prev ? parseDec(prev.bhxhRate) : 10.5),
     taxAmount: parseMoney(r.taxAmount),
     penaltyAmount: parseMoney(r.penaltyAmount),
@@ -541,13 +540,13 @@ function getOrCreateMonth(ym) {
 // ----------------------------------------------------
 async function initApp() {
   buildInputTables();
-  state.currentMonth = localStorage.getItem('DOBEST_CURRENT_MONTH') || ymNow();
+  state.currentMonth = localStorage.getItem('LINKO_CURRENT_MONTH') || ymNow();
   $('monthPicker').value = state.currentMonth;
   $('monthPicker').addEventListener('change', e => {
     if (!e.target.value) return;
     flushPendingSave();
     state.currentMonth = e.target.value;
-    localStorage.setItem('DOBEST_CURRENT_MONTH', state.currentMonth);
+    localStorage.setItem('LINKO_CURRENT_MONTH', state.currentMonth);
     getOrCreateMonth(state.currentMonth);
     loadMonthToUI();
     saveAndCalc(false);
@@ -562,13 +561,12 @@ async function initApp() {
         employeesList = cloudEmps;
         localStore.set('employees', employeesList);
       } else {
-        employeesList = localStore.get('employees') || { DB0351: 'Phạm Ngọc Hải 范玉海' };
+        employeesList = localStore.get('employees') || { ...DEFAULT_EMP };
         localStore.set('employees', employeesList);
         await withTimeout(dbRef('employees').set(employeesList));
       }
       showSync('cloud');
 
-      // Cập nhật dropdown thời gian thực khi máy khác thêm/đổi tên nhân sự (KHÔNG reload form đang gõ)
       dbRef('employees').on('value', s => {
         const val = s.val();
         if (val && typeof val === 'object' && Object.keys(val).length) {
@@ -576,7 +574,7 @@ async function initApp() {
           localStore.set('employees', employeesList);
           if (!employeesList[currentEmpId]) {
             currentEmpId = Object.keys(employeesList)[0];
-            localStorage.setItem('DOBEST_CURRENT_EMP', currentEmpId);
+            localStorage.setItem('LINKO_CURRENT_EMP', currentEmpId);
             loadEmployeeData(currentEmpId);
             syncEmployeeFromCloud(currentEmpId);
           }
@@ -585,16 +583,16 @@ async function initApp() {
       });
     } catch (e) {
       showSync('error', formatFbError(e));
-      employeesList = localStore.get('employees') || { DB0351: 'Phạm Ngọc Hải 范玉海' };
+      employeesList = localStore.get('employees') || { ...DEFAULT_EMP };
     }
   } else {
     showSync('error', fbErrorMsg);
-    employeesList = localStore.get('employees') || { DB0351: 'Phạm Ngọc Hải 范玉海' };
+    employeesList = localStore.get('employees') || { ...DEFAULT_EMP };
   }
 
-  if (!Object.keys(employeesList).length) employeesList = { DB0351: 'Phạm Ngọc Hải 范玉海' };
+  if (!Object.keys(employeesList).length) employeesList = { ...DEFAULT_EMP };
   if (!employeesList[currentEmpId]) currentEmpId = Object.keys(employeesList)[0];
-  localStorage.setItem('DOBEST_CURRENT_EMP', currentEmpId);
+  localStorage.setItem('LINKO_CURRENT_EMP', currentEmpId);
 
   renderEmpDropdown();
   loadEmployeeData(currentEmpId);
@@ -610,7 +608,7 @@ function renderEmpDropdown() {
 }
 
 function addNewEmployee() {
-  const id = (prompt('Nhập Mã Nhân Viên mới (VD: DB0352):') || '').trim().toUpperCase().replace(/[.#$\[\]\/\s]/g, '');
+  const id = (prompt('Nhập Mã Nhân Viên mới (VD: NV002):') || '').trim().toUpperCase().replace(/[.#$\[\]\/\s]/g, '');
   if (!id) return;
   if (employeesList[id]) { alert('Mã nhân viên này đã tồn tại!'); return; }
   const name = (prompt('Nhập Họ Tên Nhân Viên mới:') || '').trim();
@@ -629,7 +627,7 @@ async function deleteEmployee() {
   delete employeesList[id];
   localStore.del(`users/${id}/salaryState`);
   const remainKeys = Object.keys(employeesList);
-  if (!remainKeys.length) employeesList = { DB0351: 'Phạm Ngọc Hải 范玉海' };
+  if (!remainKeys.length) employeesList = { ...DEFAULT_EMP };
   localStore.set('employees', employeesList);
   if (database) {
     try {
@@ -645,7 +643,7 @@ function switchEmployee(id) {
   if (!id || id === currentEmpId) return;
   flushPendingSave();
   currentEmpId = id;
-  localStorage.setItem('DOBEST_CURRENT_EMP', id);
+  localStorage.setItem('LINKO_CURRENT_EMP', id);
   renderEmpDropdown();
   loadEmployeeData(id);
   if (database) syncEmployeeFromCloud(id);
@@ -758,7 +756,7 @@ function loadMonthToUI() {
   $('empId').value = rec.empId;
   $('companyNameInput').value = rec.companyName || 'CÔNG TY';
   $('baseSalary').value = rec.baseSalary > 0 ? fmtNum(rec.baseSalary) : '';
-  $('standardHours').value = rec.standardHours || 208;
+  $('standardHours').value = rec.standardHours || 200;
   $('bhxhRate').value = rec.bhxhRate;
   $('taxAmount').value = rec.taxAmount > 0 ? fmtNum(rec.taxAmount) : '';
   $('penaltyAmount').value = rec.penaltyAmount > 0 ? fmtNum(rec.penaltyAmount) : '';
@@ -785,7 +783,7 @@ function onAllowanceInput(k, v) {
 // 6. CÔNG THỨC TÍNH LƯƠNG
 // ----------------------------------------------------
 function calculateMonth(rec) {
-  const stdH = rec.standardHours > 0 ? rec.standardHours : 208;
+  const stdH = rec.standardHours > 0 ? rec.standardHours : 200;
   const exactHourly = rec.baseSalary / stdH;
 
   const calcGroup = (items, src) => {
@@ -848,7 +846,7 @@ function saveAndCalc(cloud = true) {
 
   rec.companyName = $('companyNameInput').value.trim() || 'CÔNG TY';
   rec.baseSalary = parseMoney($('baseSalary').value);
-  rec.standardHours = parseDec($('standardHours').value) || 208;
+  rec.standardHours = parseDec($('standardHours').value) || 200;
   rec.bhxhRate = parseDec($('bhxhRate').value);
   rec.taxAmount = parseMoney($('taxAmount').value);
   rec.penaltyAmount = parseMoney($('penaltyAmount').value);
@@ -1089,7 +1087,7 @@ function switchTab(t) {
 }
 function toggleDarkMode() {
   const d = document.documentElement.classList.toggle('dark');
-  localStorage.setItem('dobest_dark', d ? '1' : '0');
+  localStorage.setItem('linko_dark', d ? '1' : '0');
 }
 
 function openBackupModal() {
@@ -1104,7 +1102,7 @@ function forceReloadFromCloud() {
   syncEmployeeFromCloud(currentEmpId).then(() => closeBackupModal());
 }
 function backupJSON() {
-  const payload = { version: 4, exportedAt: new Date().toISOString(), employees: employeesList, users: {} };
+  const payload = { version: 5, exportedAt: new Date().toISOString(), employees: employeesList, users: {} };
   Object.keys(employeesList).forEach(id => { payload.users[id] = localStore.get(`users/${id}/salaryState`); });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }));
